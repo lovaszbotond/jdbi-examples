@@ -8,17 +8,17 @@
     <version>1.0</version>
     <developers>
         <developer>
-            <id>jeszy</id>
-            <name>Péter Jeszenszky</name>
-            <email>jeszenszky.peter@inf.unideb.hu</email>
+            <id>lovaszbotond</id>
+            <name>Botond Lovász</name>
+            <email>botond.lovasz@gmail.com</email>
             <organization>Faculty of Informatics, University of Debrecen</organization>
             <organizationUrl>https://www.inf.unideb.hu/</organizationUrl>
         </developer>
     </developers>
     <scm>
-        <url>https://github.com/jeszy75/jdbi-examples</url>
-        <connection>scm:git:https://github.com/jeszy75/jdbi-examples.git</connection>
-        <developerConnection>scm:git:https://github.com/jeszy75/jdbi-examples.git</developerConnection>
+        <url>https://github.com/lovaszbotond/jdbi-examples</url>
+        <connection>scm:git:https://github.com/lovaszbotond/jdbi-examples.git</connection>
+        <developerConnection>scm:git:https://github.com/lovaszbotond/jdbi-examples.git</developerConnection>
     </scm>
     <properties>
         <maven.compiler.source>13</maven.compiler.source>
@@ -28,6 +28,14 @@
         <exec.cleanupDaemonThreads>false</exec.cleanupDaemonThreads>
     </properties>
     <dependencies>
+        <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.12</version>
+            <scope>
+                compile
+            </scope>
+        </dependency>
         <dependency>
             <groupId>org.jdbi</groupId>
             <artifactId>jdbi3-core</artifactId>
@@ -68,6 +76,14 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>org.codehaus.mojo</groupId>
+                <artifactId>exec-maven-plugin</artifactId>
+                <version>1.6.0</version>
+                <configuration>
+                    <mainClass>user.Main</mainClass>
+                </configuration>
+                            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-compiler-plugin</artifactId>
                 <version>3.8.1</version>
@@ -75,12 +91,28 @@
                     <compilerArgs>
                         <arg>--enable-preview</arg>
                     </compilerArgs>
+                    <source>13</source>
+                    <target>13</target>
                 </configuration>
             </plugin>
             <plugin>
                 <groupId>com.github.johnpoth</groupId>
                 <artifactId>jshell-maven-plugin</artifactId>
                 <version>1.2</version>
+            </plugin>
+            <plugin>
+                <groupId>org.projectlombok</groupId>
+                <artifactId>lombok-maven-plugin</artifactId>
+                <version>1.18.12.0</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>
+                                delombok
+                            </goal>
+                        </goals>
+                    </execution>
+                </executions>
             </plugin>
         </plugins>
     </build>
